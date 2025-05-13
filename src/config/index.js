@@ -9,5 +9,15 @@ module.exports = {
         api_key: process.env.CLOUDINARY_API_KEY,
         api_secret: process.env.CLOUDINARY_API_SECRET,
         asset_folder: process.env.CLOUDINARY_ASSETS_FOLDER,
+    },
+    users: {
+        oleg: {
+            email: process.env.OLEG_EMAIL,
+            password: process.env.OLEG_PASSWORD,
+        },
+        olesya: {
+            email: process.env.OLESYA_EMAIL,
+            password: process.env.OLESYA_PASSWORD,
+        }
     }
 }
