@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { port } = require('./config');
-const { UserController } = require('./controllers');
+const { UserController, PhotoController } = require('./controllers');
 const { connectDb } = require('./utils');
 const { UserService } = require('./services');
 const { errorMiddleware, loggerMiddleware } = require('./middlewares');
@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan(':date[iso] :method :url :status :response-time ms body :body'));
 
 app.use('/users', UserController);
+app.use('/photos', PhotoController);
 
 app.use(errorMiddleware);
 

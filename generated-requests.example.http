@@ -1,4 +1,4 @@
-###
+### User Login
 POST http://localhost:5001/users/login
 Content-Type: application/json
 
@@ -9,7 +9,25 @@ Content-Type: application/json
 
 > {% client.global.set("auth_token", response.body.token); %}
 
-###
+### User Logout
 GET http://localhost:5001/users/logout
+Authorization: Bearer {{auth_token}}
+
+### Photos List
+GET http://localhost:5001/photos/
+Authorization: Bearer {{auth_token}}
+
+### Photos Upload
+POST http://localhost:5001/photos/upload
+Authorization: Bearer {{auth_token}}
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="photo"; filename="photo_1.jpg"
+
+< ./path/to/your/file/photo_1.jpg
+
+### Photos Delete
+DELETE http://localhost:5001/photos?id={ObjectID}
 Authorization: Bearer {{auth_token}}
 
