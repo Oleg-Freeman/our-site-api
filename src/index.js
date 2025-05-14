@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { port } = require('./config');
-const { UserController, PhotoController, ComplimentController } = require('./controllers');
+const { UserController, PhotoController, ComplimentController, HealthController } = require('./controllers');
 const { connectDb } = require('./utils');
 const { UserService } = require('./services');
 const { errorMiddleware, loggerMiddleware } = require('./middlewares');
@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(':date[iso] :method :url :status :response-time ms body :body'));
 
+app.use('/health', HealthController);
 app.use('/users', UserController);
 app.use('/photos', PhotoController);
 app.use('/compliments', ComplimentController);
