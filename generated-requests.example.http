@@ -31,3 +31,21 @@ Content-Disposition: form-data; name="photo"; filename="photo_1.jpg"
 DELETE http://localhost:5001/photos?id={ObjectID}
 Authorization: Bearer {{auth_token}}
 
+### Compliments List
+GET http://localhost:5001/compliments?type=for_her
+Authorization: Bearer {{auth_token}}
+
+### Compliments Create
+POST http://localhost:5001/compliments
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "type": "for_her",
+  "text": "You are the best thing that ever happened to me."
+}
+
+### Compliments Delete
+DELETE http://localhost:5001/compliments/682495c5e90f825e99e8f9c6
+Authorization: Bearer {{auth_token}}
+

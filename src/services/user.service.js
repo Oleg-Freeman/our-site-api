@@ -17,22 +17,21 @@ async function seedUsers() {
         }
     ];
 
-    try {
-        const users = await UserModel.find();
+    const users = await UserModel.find();
 
-        if (!users?.length) {
-            console.info('Seeding users...');
-            const salt = await bcrypt.genSalt(10);
-            defaultUsers[0].password = await bcrypt.hash(defaultUsers[0].password, salt);
-            defaultUsers[1].password = await bcrypt.hash(defaultUsers[1].password, salt);
-
-            await UserModel.create(defaultUsers);
-
-            console.info('Users seeded successfully');
-        }
-    } catch (error) {
-        console.error('Error seeding users', error);
+    if (users?.length !== 0) {
+        console.info('Users already seeded');
+        return;
     }
+
+    console.info('Seeding users...');
+    const salt = await bcrypt.genSalt(10);
+    defaultUsers[0].password = await bcrypt.hash(defaultUsers[0].password, salt);
+    defaultUsers[1].password = await bcrypt.hash(defaultUsers[1].password, salt);
+
+    await UserModel.create(defaultUsers);
+
+    console.info('Users seeded successfully');
 }
 
 async function loginUser({ email, password }) {
