@@ -59,6 +59,10 @@ async function loginUser({ email, password }) {
     return { user, token };
 }
 
+async function logoutUser(user) {
+    await UserModel.updateOne({ _id: user._id }, { $unset: { token: 1 } });
+}
+
 async function pullUsers() {
     setInterval(async () => {
         const d = new Date();
@@ -77,6 +81,7 @@ async function pullUsers() {
 
 module.exports = {
     loginUser,
+    logoutUser,
     seedUsers,
     pullUsers
 }
