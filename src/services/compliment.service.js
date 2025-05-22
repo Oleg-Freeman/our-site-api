@@ -8,6 +8,14 @@ async function getCompliments(type) {
     return compliments || [];
 }
 
+async function getRandomCompliment(type) {
+    const complimentsCount = await ComplimentModel.countDocuments({ compliment_type: type });
+    const randomNumber = Math.floor(Math.random() * (complimentsCount + 1));
+    const compliment = await ComplimentModel.findOne({ compliment_type: type }).skip(randomNumber);
+
+    return compliment;
+}
+
 async function addCompliment({ type, text }) {
     const compliment = await ComplimentModel.create({ text, compliment_type: type });
 
@@ -49,6 +57,7 @@ async function seedCompliments() {
 
 module.exports = {
     getCompliments,
+    getRandomCompliment,
     addCompliment,
     seedCompliments,
     deleteCompliment

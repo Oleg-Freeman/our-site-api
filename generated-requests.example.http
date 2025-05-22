@@ -35,6 +35,10 @@ Authorization: Bearer {{auth_token}}
 GET http://localhost:5001/compliments?type=for_her
 Authorization: Bearer {{auth_token}}
 
+### Random Compliment
+GET http://localhost:5001/compliments/random?type=for_her
+Authorization: Bearer {{auth_token}}
+
 ### Compliments Create
 POST http://localhost:5001/compliments
 Content-Type: application/json

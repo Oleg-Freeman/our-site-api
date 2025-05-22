@@ -15,6 +15,18 @@ router.get('/', checkAuth, validateRequest(getComplimentsSchema), async (req, re
     }
 });
 
+router.get('/random', checkAuth, validateRequest(getComplimentsSchema), async (req, res, next) => {
+    try {
+        const { type } = req.query;
+
+        const compliment = await ComplimentService.getRandomCompliment(type);
+
+        res.json(compliment);
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.post('/', checkAuth, validateRequest(addComplimentsSchema), async (req, res, next) => {
     try {
         const compliment = await ComplimentService.addCompliment(req.body);
