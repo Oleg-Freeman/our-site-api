@@ -15,9 +15,12 @@ module.exports = async (req, res, next) => {
         }
 
         const { id } = jwt.verify(token, jwtSecret);
+        console.log(`Token: ${token}`);
+        console.log(`ID: ${id}`);
         const user = await UserModel.findById(id, '-password -token');
+        console.log(`User: ${JSON.stringify(user)}`);
 
-        if (!user || !user.token || token !== user.token) {
+        if (!user) {
             throw new CustomError(401, 'Unauthorized');
         }
 
