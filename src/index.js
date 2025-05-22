@@ -10,11 +10,6 @@ const { errorMiddleware, loggerMiddleware } = require('./middlewares');
 const app = express();
 morgan.token('body', loggerMiddleware);
 
-(async () => {
-    await connectDb();
-    await UserService.pullUsers();
-})();
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +22,11 @@ app.use('/compliments', ComplimentController);
 
 app.use(errorMiddleware);
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});
+(async () => {
+    await connectDb();
+    await UserService.pullUsers();
+
+    app.listen(port, () => {
+        console.log(`Server is running on port: ${port}`);
+    });
+})();
