@@ -15,18 +15,13 @@ module.exports = async (req, res, next) => {
         }
 
         const { id } = jwt.verify(token, jwtSecret);
-        const user = await UserModel.findById(id);
+        const user = await UserModel.findById(id, '-password -token');
 
         if (!user || !user.token || token !== user.token) {
             throw new CustomError(401, 'Unauthorized');
         }
 
-        req.user = {
-            _id: user._id,
-            email: user.email,
-            updatedAt: user.updatedAt,
-            createdAt: user.createdAt,
-        };
+        req.user = user;
 
         next();
     } catch (error) {
