@@ -10,9 +10,9 @@ async function getPhotos() {
 async function uploadPhoto(user, file) {
     const imageURL = await imageUploader.upload(file.path);
 
-    await PhotoModel.create({ url: imageURL, user_id: user._id })
+    const photo = await PhotoModel.create({ url: imageURL, user_id: user._id });
 
-    return imageURL;
+    return photo;
 }
 
 async function deletePhoto(id) {

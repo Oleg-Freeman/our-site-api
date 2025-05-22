@@ -15,9 +15,9 @@ router.get('/', checkAuth, async (req, res, next) => {
 
 router.post('/upload', checkAuth, imageUpload.single('photo'), async (req, res, next) => {
     try {
-        const url = await PhotoService.uploadPhoto(req.user, req.file);
+        const photo = await PhotoService.uploadPhoto(req.user, req.file);
 
-        res.json({ url });
+        res.json(photo);
     } catch (error) {
         next(error);
     }
