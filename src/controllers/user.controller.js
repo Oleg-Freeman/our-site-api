@@ -23,4 +23,12 @@ router.get('/logout', checkAuth, async(req, res, next) => {
     }
 })
 
+router.get('/me', checkAuth, async (req, res, next) => {
+    try {
+        res.json(req.user);
+    } catch (error) {
+        next(error);
+    }
+})
+
 module.exports = router;

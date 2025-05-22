@@ -21,7 +21,12 @@ module.exports = async (req, res, next) => {
             throw new CustomError(401, 'Unauthorized');
         }
 
-        req.user = user;
+        req.user = {
+            _id: user._id,
+            email: user.email,
+            updatedAt: user.updatedAt,
+            createdAt: user.createdAt,
+        };
 
         next();
     } catch (error) {
