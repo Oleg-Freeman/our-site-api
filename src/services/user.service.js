@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { UserModel } = require('../models');
 const { CustomError } = require('../utils');
 const { jwtSecret, users: usersConfig } = require('../config');
+const { USER_TYPES } = require('../constants');
 
 async function seedUsers() {
     const { oleg, olesya } = usersConfig;
@@ -10,10 +11,12 @@ async function seedUsers() {
         {
             email: oleg.email,
             password: oleg.password,
+            user_type: USER_TYPES.HIM
         },
         {
             email: olesya.email,
             password: olesya.password,
+            user_type: USER_TYPES.HER
         }
     ];
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { DB_MODELS } = require('../constants');
+const { DB_MODELS, USER_TYPES } = require('../constants');
 
 const Schema = mongoose.Schema;
 
@@ -19,7 +19,12 @@ const userSchema = new Schema(
         token: {
             type: String,
             required: false,
-        }
+        },
+        user_type: {
+            type: String,
+            enum: Object.values(USER_TYPES),
+            required: true,
+        },
     },
     {
         timestamps: true,
