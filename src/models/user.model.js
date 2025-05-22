@@ -20,6 +20,7 @@ const userSchema = new Schema(
             type: String,
             required: false,
         },
+        // TODO: add user devices array
         user_type: {
             type: String,
             enum: Object.values(USER_TYPES),

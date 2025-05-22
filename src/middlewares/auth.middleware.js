@@ -15,11 +15,9 @@ module.exports = async (req, res, next) => {
         }
 
         const { id } = jwt.verify(token, jwtSecret);
-        console.log(`Token: ${token}`);
-        console.log(`ID: ${id}`);
         const user = await UserModel.findById(id, '-password -token');
-        console.log(`User: ${JSON.stringify(user)}`);
 
+        // TODO: check user devices array
         if (!user) {
             throw new CustomError(401, 'Unauthorized');
         }
