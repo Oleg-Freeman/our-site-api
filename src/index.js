@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { port } = require('./config');
-const { UserController, PhotoController, ComplimentController, HealthController } = require('./controllers');
+const { UserController, PhotoController, ComplimentController, HealthController, DrawingController } = require('./controllers');
 const { connectDb } = require('./utils');
 const { UserService } = require('./services');
 const { errorMiddleware, loggerMiddleware } = require('./middlewares');
@@ -19,6 +19,7 @@ app.use('/health', HealthController);
 app.use('/users', UserController);
 app.use('/photos', PhotoController);
 app.use('/compliments', ComplimentController);
+app.use('/drawings', DrawingController);
 
 app.use(errorMiddleware);
 
