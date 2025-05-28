@@ -18,13 +18,7 @@ async function createDrawing(user, data) {
         paths, name
     });
 
-    return {
-        _id: drawing._id,
-        user_id: drawing.user_id,
-        createdAt: drawing.createdAt,
-        updatedAt: drawing.updatedAt,
-        name: drawing.name,
-    }
+    return drawing;
 }
 
 async function getDrawingShortList() {
