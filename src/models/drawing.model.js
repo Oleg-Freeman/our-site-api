@@ -13,28 +13,34 @@ const DrawingSchema = new Schema({
             required: true,
             unique: true,
         },
-        stroke_width: {
-            type: Number,
-        },
-        stroke_color: {
-            type: String,
-        },
-        draw_mode: {
-            type: Boolean,
-        },
-        paths: {
+        layers: {
             type: [
                 {
-                    x: {
+                    stroke_width: {
                         type: Number,
-                        required: true,
                     },
-                    y: {
-                        type: Number,
-                        required: true,
+                    stroke_color: {
+                        type: String,
                     },
-                },
-            ],
+                    draw_mode: {
+                        type: Boolean,
+                    },
+                    paths: {
+                        type: [
+                            {
+                                x: {
+                                    type: Number,
+                                    required: true,
+                                },
+                                y: {
+                                    type: Number,
+                                    required: true,
+                                },
+                            },
+                        ],
+                    },
+                }
+            ]
         },
     },
     {

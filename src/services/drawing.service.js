@@ -2,7 +2,7 @@ const { DrawingModel } = require('../models');
 const { CustomError } = require('../utils');
 
 async function createDrawing(user, data) {
-    const { strokeWidth, strokeColor, drawMode, paths = [], name  } = data;
+    const { layers = [], name  } = data;
 
     let drawing = await DrawingModel.findOne({ name });
 
@@ -12,17 +12,15 @@ async function createDrawing(user, data) {
 
     drawing = await DrawingModel.create({
         user_id: user._id,
-        stroke_width: strokeWidth || 5,
-        stroke_color: strokeColor || '#000000',
-        draw_mode: drawMode || true,
-        paths, name
+        name,
+        layers,
     });
 
     return drawing;
 }
 
 async function getDrawingShortList() {
-    const drawings = await DrawingModel.find({}, '-paths -draw_mode -stroke_width -stroke_color');
+    const drawings = await DrawingModel.find({}, '-layers');
 
     return drawings || [];
 }

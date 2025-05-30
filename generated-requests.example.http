@@ -60,17 +60,36 @@ Content-Type: application/json
 
 {
   "name": "My Drawing 002",
-  "strokeWidth": 5,
-  "strokeColor": "123456",
-  "drawMode": true,
-  "paths": [
+  "layers": [
     {
-      "x": 100,
-      "y": 150
+      "strokeWidth": 5,
+      "strokeColor": "123456",
+      "drawMode": true,
+      "paths": [
+        {
+          "x": 100,
+          "y": 150
+        },
+        {
+          "x": 200,
+          "y": 250
+        }
+      ]
     },
     {
-      "x": 200,
-      "y": 250
+      "strokeWidth": 10,
+      "strokeColor": "123456",
+      "drawMode": false,
+      "paths": [
+        {
+          "x": 100,
+          "y": 150
+        },
+        {
+          "x": 200,
+          "y": 250
+        }
+      ]
     }
   ]
 }
