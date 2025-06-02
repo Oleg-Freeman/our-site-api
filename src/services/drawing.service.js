@@ -16,7 +16,7 @@ async function createDrawing(user, data) {
         layers,
     });
 
-    return drawing;
+    return DrawingModel.findById(drawing._id, '-layers._id -layers.paths._id');
 }
 
 async function getDrawingShortList() {
@@ -26,7 +26,7 @@ async function getDrawingShortList() {
 }
 
 async function getDrawingById(id) {
-    const drawing = await DrawingModel.findById(id);
+    const drawing = await DrawingModel.findById(id, '-layers._id -layers.paths._id');
 
     if (!drawing) {
         throw new CustomError(404, 'Drawing not found');

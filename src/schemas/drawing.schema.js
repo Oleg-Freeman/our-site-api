@@ -4,7 +4,6 @@ const drawingSchema = Joi.object({
     name: Joi.string().required(),
     layers: Joi.array().min(1).items(
         Joi.object({
-            _id: Joi.string().hex().length(24).optional(),
             strokeWidth: Joi.number().default(5),
             strokeColor: Joi.string().default('#000000'),
             drawMode: Joi.boolean().default(true),

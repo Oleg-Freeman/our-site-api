@@ -16,13 +16,13 @@ const DrawingSchema = new Schema({
         layers: {
             type: [
                 {
-                    stroke_width: {
+                    strokeWidth: {
                         type: Number,
                     },
-                    stroke_color: {
+                    strokeColor: {
                         type: String,
                     },
-                    draw_mode: {
+                    drawMode: {
                         type: Boolean,
                     },
                     paths: {
