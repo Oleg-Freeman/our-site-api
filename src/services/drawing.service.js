@@ -20,7 +20,7 @@ async function createDrawing(user, data) {
 }
 
 async function getDrawingShortList() {
-    const drawings = await DrawingModel.find({}, '-layers');
+    const drawings = await DrawingModel.find({}, '-layers').sort({ createdAt: -1 });
 
     return drawings || [];
 }
